@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Weather App</title>
+  <link rel="icon" href="https://img.icons8.com/dotty/80/000000/day-and-night.png">
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="src/styles_wk5.css" /> 
+  <script src="https://kit.fontawesome.com/199e3effbf.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="card" id="search">
+      <form>
+        <div class="search-city">
+            <div class="button-in">
+              <input 
+                type="text" 
+                class="city-search-control" 
+                placeholder="Search city..." 
+                autocomplete="off" 
+                id="city-input"/>
+              <button id="search-icon" class="icon">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+      </form>
+      
+        <p class="date" id="dayAndTime"></p>
+        <h2 id="city"></h2>
+        <img src="https://img.icons8.com/cotton/128/000000/clouds--v1.png" />
+        <p class="description" id="description"></p>
+        
+        <div class="temperature">
+          <p><span id="temperature"></span>
+            <span class="units">
+              <a href="#" id="celsius-link">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a>
+            </span>
+          </p>
+        </div>
+
+        <div class="extras">
+          <ul>
+            <li>Humidity: <span id="humidity"></span>%</li>
+            <li>Wind: <span id="wind"></span> km/h</li>
+          </ul>
+        </div>
+
+        <div class="row weather-forecast" id="forecast">
+
+          <div class="days col-5 col-md-auto text-center">
+            <h7>Mon</h7>
+            <img src="images/icons8-partly-cloudy-day-64.png" />
+            <div class="weather-forecast-temperature">
+              <strong>17°</strong> | 10°
+            </div>
+          </div>
+
+          <div class="days col-5 col-md-auto text-center">
+            <h7>Tue</h7>
+            <img src="images/icons8-sun-50.png" />
+            <div class="weather-forecast-temperature">
+              <strong>23°</strong> | 14°
+            </div>
+          </div>
+
+          <div class="days col-5 col-md-auto text-center">
+            <h7>Wed</h7>
+            <img src="images/icons8-storm-64.png" />
+            <div class="weather-forecast-temperature">
+              <strong>29°</strong> | 15°
+            </div>
+          </div>
+
+          <div class="days col-5 col-md-auto text-center">
+            <h7>Thu</h7>
+            <img src="images/icons8-rain-64.png" />
+            <div class="weather-forecast-temperature">
+              <strong>19°</strong> | 12°
+            </div>
+          </div>
+
+          <div class="days col-5 col-md-auto text-center">
+            <h7>Fri</h7>
+            <img src="images/icons8-clouds-64.png" />
+            <div class="weather-forecast-temperature">
+              <strong>18°</strong> | 13°
+            </div>
+          </div>
+          <br>
+          <button class= "location-button" id="current-location-button">
+            Search Current Location
+          </button>
+        </div>
+
+        <footer>
+          <small>
+            Designed by Laura Gumienik.
+          </small>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="src/script.js"></script>
+</body>
+
+</html>
