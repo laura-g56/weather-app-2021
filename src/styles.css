@@ -135,3 +135,7 @@ button#current-location-button:hover {
   color: #01d65d;
   background-color: #125880;
 }
+#github-ref {
+  text-decoration: none;
+  font-size: 12px;
+}
