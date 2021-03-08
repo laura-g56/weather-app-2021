@@ -56,10 +56,14 @@ function displayWeatherInfo(response) {
   console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
-  document.querySelector("#description").innerHTML =response.data.weather[0].main;
+  document.querySelector("#description").innerHTML =response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  
+  let icon = document.querySelector("#icon")
+  icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
+
 
 //User-input City search
 function searchCity(city) {
@@ -104,6 +108,8 @@ searchCity("Geelong"); //Initial City Shown
 function changeToF(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
+  // celsiusLink.classList.remove("active");
+  // fahrenheitLink.classList.add("active");
   let temperature = tempElement.innerHTML;
   tempElement.innerHTML = Math.round(((temperature * 9) / 5) + 32);
 }
@@ -115,6 +121,8 @@ fahrenheitLink.addEventListener("click", changeToF);
 function changeToC(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
+  // celsiusLink.classList.add("active");
+  // fahrenheitLink.classList.remove("active");
   let temperature = tempElement.innerHTML;
   tempElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
 }
@@ -123,3 +131,4 @@ let celciusLink = document.querySelector("#celsius-link");
 celciusLink.addEventListener("click", changeToC);
 
 
+//let celsiusTemperature = null;
