@@ -13,6 +13,13 @@ function formatAMPM(date) {
   return ampm;
 }
 
+// Days of the Week
+function formatDay(timestamp) {
+let now = new Date(timestamp);
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+return days[now.getDay()];
+}
+
 //Current Date and Time 
 let now = new Date();
 
@@ -69,33 +76,31 @@ function displayWeatherInfo(response) {
 
 
 //5 day Forecast
-// function displayForecast(response) {
-//   let forecastElement = document.querySelector("#forecast");
-//   forecastElement.innerHTML = null;
-//   let forecast = null;
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
 
-//   for (let index = 0; index < 5; index++) {
-//     forecast = response.data.list[index];
-//     forecastElement.innerHTML += `
-//     <div class="days col-5 col-md-auto text-center">
-//       <h7>
-        
-//       </h7>
-//       <img
-//         src="http://openweathermap.org/img/wn/${
-//           forecast.weather[0].icon
-//         }@2x.png"
-//       />
-//       <div class="weather-forecast-temperature">
-//         <strong>
-//           ${Math.round(forecast.main.temp_max)}°
-//         </strong>
-//         ${Math.round(forecast.main.temp_min)}°
-//       </div>
-//     </div>
-//   `;
-//   }
-// }
+  for (let index = 0; index < 40; index += 8 ) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="days col-5 col-md-auto text-center">
+      <h7>
+        ${formatDay(forecast.dt * 1000)}
+      </h7>
+      <img
+        src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
+}
 
 
 
