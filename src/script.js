@@ -63,7 +63,38 @@ function displayWeatherInfo(response) {
   let icon = document.querySelector("#icon")
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
+
+  celsiusTemperature = response.data.main.temp;
 }
+
+//5 day Forecast
+// function displayForecast(response) {
+//   let forecastElement = document.querySelector("#forecast");
+//   forecastElement.innerHTML = null;
+//   let forecast = null;
+
+//   for (let index = 0; index < 5; index++) {
+//     forecast = response.data.list[index];
+//     forecastElement.innerHTML += `
+//     <div class="col-2.5">
+//       <h7>
+//         ${formatHours(forecast.dt * 1000)}
+//       </h7>
+//       <img
+//         src="http://openweathermap.org/img/wn/${
+//           forecast.weather[0].icon
+//         }@2x.png"
+//       />
+//       <div class="weather-forecast-temperature">
+//         <strong>
+//           ${Math.round(forecast.main.temp_max)}°
+//         </strong>
+//         ${Math.round(forecast.main.temp_min)}°
+//       </div>
+//     </div>
+//   `;
+//   }
+// }
 
 
 //User-input City search
@@ -96,40 +127,44 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-//User Input Button Actions
-let search = document.querySelector("#search");
-search.addEventListener("submit", handleSubmit); //User Search
-
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation); //Geolocation
 
-searchCity("Geelong"); //Initial City Shown
 
 //Temperature toggle between Celcius/Fahrenheit
 function changeToF(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
-  // celsiusLink.classList.remove("active");
-  // fahrenheitLink.classList.add("active");
-  let temperature = tempElement.innerHTML;
-  tempElement.innerHTML = Math.round(((temperature * 9) / 5) + 32);
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(fahrenheitTemp);
 }
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", changeToF);
-
 
 function changeToC(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
-  // celsiusLink.classList.add("active");
-  // fahrenheitLink.classList.remove("active");
-  let temperature = tempElement.innerHTML;
-  tempElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+  
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+
+  tempElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-let celciusLink = document.querySelector("#celsius-link");
-celciusLink.addEventListener("click", changeToC);
+let celsiusTemperature = null;
 
 
-//let celsiusTemperature = null;
+//User Input Button Actions
+let searchForm = document.querySelector("#search");
+searchForm.addEventListener("submit", handleSubmit); //User Search
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", changeToF);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", changeToC);
+
+
+searchCity("Geelong"); //Initial City Shown
