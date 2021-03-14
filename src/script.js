@@ -61,7 +61,7 @@ dayAndTime.innerHTML = `${currentDay} ${currentDate} ${currentMonth} ${currentYe
 //Get API Information
 function displayWeatherInfo(response) {
   console.log(response);
-  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#city").innerHTML = response.data.name + ", " + response.data.sys.country;
   document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#description").innerHTML =response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -103,17 +103,16 @@ function displayForecast(response) {
 }
 
 
-
 //User-input City search
 function searchCity(city) {
   let apiKey = "c9372dd2ab0fc70c02af13cd16583303";
   //let units = "metric";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherInfo);
+  axios.get(apiUrl).then(displayWeatherInfo); // main temperature
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayForecast);  // 5 day forecast temperature
 }
 
 //User-input City display

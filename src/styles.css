@@ -4,7 +4,7 @@ body {
   text-shadow: 3px 4px 5px #001722;
   display: block;
   margin: 0 auto;
-  max-width: 570px;
+  max-width: 575px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -13,6 +13,10 @@ h2 {
   padding-top: 10px;
   font-size: 40px;
   font-weight: bold;
+}
+h7 {
+  text-align: center;
+  font-size: 15px;
 }
 p {
   text-align: center;
@@ -65,7 +69,7 @@ i {
   border-color: rgb(113, 143, 182);
 }
 .search-city {
-  padding: 20px 10px;
+  padding: 20px 10px 0px;
 }
 .description {
   padding-top: 5px;
@@ -124,7 +128,7 @@ i {
 #search-icon {
   position: relative;
   bottom: 30px;
-  left: 85%;
+  left: 84%;
   padding: 0;
   margin: 0;
   display: block;
