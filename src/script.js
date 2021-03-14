@@ -1,4 +1,4 @@
-//AM to PM
+//Change time from AM to PM
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -13,7 +13,7 @@ function formatAMPM(date) {
   return ampm;
 }
 
-//Date and Time 
+//Current Date and Time 
 let now = new Date();
 
 let hours = now.getHours();
@@ -67,6 +67,7 @@ function displayWeatherInfo(response) {
   celsiusTemperature = response.data.main.temp;
 }
 
+
 //5 day Forecast
 // function displayForecast(response) {
 //   let forecastElement = document.querySelector("#forecast");
@@ -76,9 +77,9 @@ function displayWeatherInfo(response) {
 //   for (let index = 0; index < 5; index++) {
 //     forecast = response.data.list[index];
 //     forecastElement.innerHTML += `
-//     <div class="col-2.5">
+//     <div class="days col-5 col-md-auto text-center">
 //       <h7>
-//         ${formatHours(forecast.dt * 1000)}
+        
 //       </h7>
 //       <img
 //         src="http://openweathermap.org/img/wn/${
@@ -97,6 +98,7 @@ function displayWeatherInfo(response) {
 // }
 
 
+
 //User-input City search
 function searchCity(city) {
   let apiKey = "c9372dd2ab0fc70c02af13cd16583303";
@@ -104,6 +106,9 @@ function searchCity(city) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherInfo);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //User-input City display
@@ -127,18 +132,13 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-let currentLocationButton = document.querySelector("#current-location-button");
-currentLocationButton.addEventListener("click", getCurrentLocation); //Geolocation
-
 
 //Temperature toggle between Celcius/Fahrenheit
 function changeToF(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
-
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-
   let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
   tempElement.innerHTML = Math.round(fahrenheitTemp);
 }
@@ -146,10 +146,8 @@ function changeToF(event) {
 function changeToC(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#temperature");
-  
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-
   tempElement.innerHTML = Math.round(celsiusTemperature);
 }
 
@@ -160,11 +158,14 @@ let celsiusTemperature = null;
 let searchForm = document.querySelector("#search");
 searchForm.addEventListener("submit", handleSubmit); //User Search
 
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", getCurrentLocation); //Geolocation
+
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", changeToF);
+fahrenheitLink.addEventListener("click", changeToF); //Temperature in Fahrenheit
 
 let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", changeToC);
+celsiusLink.addEventListener("click", changeToC); //Temperature in Celsius
 
 
 searchCity("Geelong"); //Initial City Shown
