@@ -58,6 +58,9 @@ let currentDate = now.getDate();
 let dayAndTime = document.querySelector("#dayAndTime");
 dayAndTime.innerHTML = `${currentDay} ${currentDate} ${currentMonth} ${currentYear} ${formatAMPM(new Date())}`;
 
+// Custom Icons to replace API standards
+
+
 //Get API Weather Information
 function displayWeatherInfo(response) {
   console.log(response);
