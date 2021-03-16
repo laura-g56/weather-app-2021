@@ -64,8 +64,9 @@ function displayWeatherInfo(response) {
   document.querySelector("#city").innerHTML = response.data.name + ", " + response.data.sys.country;
   document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#description").innerHTML =response.data.weather[0].description;
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
   
   let icon = document.querySelector("#icon")
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
@@ -73,7 +74,7 @@ function displayWeatherInfo(response) {
 
   celsiusTemperature = response.data.main.temp;
 
-  //One-Call 5 day Forecast search
+  //'One-Call' apiURL
   let apiKey = "c9372dd2ab0fc70c02af13cd16583303";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/onecall";
   let apiUrl = `${apiEndpoint}?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${apiKey}`;
@@ -106,6 +107,8 @@ function displayForecast(response) {
     </div>
   `;
   }
+  //display precipitation
+  document.querySelector("#precipitation").innerHTML = Math.round(response.data.daily[0].pop * 100);
 }
 
 
