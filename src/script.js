@@ -1,4 +1,4 @@
-//Change time from AM to PM
+//Change time from AM to PM (format Hours)
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -20,7 +20,7 @@ let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 return days[now.getDay()];
 }
 
-//Current Date and Time 
+//Current Date and Timestamp 
 let now = new Date();
 
 let hours = now.getHours();
@@ -58,7 +58,7 @@ let currentDate = now.getDate();
 let dayAndTime = document.querySelector("#dayAndTime");
 dayAndTime.innerHTML = `${currentDay} ${currentDate} ${currentMonth} ${currentYear} ${formatAMPM(new Date())}`;
 
-//Get API Information
+//Get API Weather Information
 function displayWeatherInfo(response) {
   console.log(response);
   document.querySelector("#city").innerHTML = response.data.name + ", " + response.data.sys.country;
@@ -72,17 +72,23 @@ function displayWeatherInfo(response) {
   icon.setAttribute("alt", response.data.weather[0].description);
 
   celsiusTemperature = response.data.main.temp;
-}
 
+  //One-Call 5 day Forecast search
+  let apiKey = "c9372dd2ab0fc70c02af13cd16583303";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/onecall";
+  let apiUrl = `${apiEndpoint}?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);  // 5 day forecast Min & Max
+}
 
 //5 day Forecast
 function displayForecast(response) {
+  console.log(response);
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 7; index < 36; index += 7 ) {
-    forecast = response.data.list[index];
+  for (let index = 1; index < 6; index++) {
+    forecast = response.data.daily[index];
     forecastElement.innerHTML += `
     <div class="days col-5 col-md-auto text-center">
       <h7>
@@ -93,9 +99,9 @@ function displayForecast(response) {
       />
       <div class="weather-forecast-temperature">
         <strong>
-          ${Math.round(forecast.main.temp_max)}°
+          ${Math.round(forecast.temp.max)}°
         </strong> |
-        ${Math.round(forecast.main.temp_min)}°
+        ${Math.round(forecast.temp.min)}°
       </div>
     </div>
   `;
