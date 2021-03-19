@@ -70,7 +70,7 @@ function getIcon(icon) {
   } else if (icon === "01d") {
     iconElement = "images/icons8-sun-50.png";
   } else if (icon === "01n") {
-    iconElement = "images/gif/clearnightgif.gif";
+    iconElement = "images/icons8-moon-dark-64.png";
   } else if (icon === "02d") {
     iconElement = "images/icons8-partly-cloudy-day-64.png";
   } else if (icon === "02n") {
@@ -83,10 +83,14 @@ function getIcon(icon) {
     iconElement = "images/icons8-rain-64.png";
   } else if (icon === "10n") {
     iconElement = "images/icons8-rain-64.png";
+  } else if (icon === "11d") {
+    iconElement = "images/icons8-storm-64.png";
+  } else if (icon === "11n") {
+    iconElement = "images/icons8-storm-64.png";
   } else if (icon === "13d") {
-    iconElement = "images/gif/snowgif.gif";
+    iconElement = "images/icons8-snow-64.png";
   } else if (icon === "13n") {
-    iconElement = "images/gif/snowgif.gif";
+    iconElement = "images/icons8-snow-64.png";
   } else if (icon === "50d") {
     iconElement = "images/icons8-haze-50.png";
   } else if (icon === "50n") {
