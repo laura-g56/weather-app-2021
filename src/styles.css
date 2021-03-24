@@ -114,6 +114,7 @@ i {
   height: 130px;
   width: 120px;
   padding-top: 15px;
+  padding-bottom: 10px;
 }
 .city-search-control {
   border: 1px rgb(175, 175, 175) solid;
