@@ -18,3 +18,5 @@ App features:
 - Ability to toggle between celsius and fahrenheit
 
 My weather app is hosted on Netlify and can be viewed <a href="https://zen-bhaskara-aec7cb.netlify.app/" rel="nofollow">here</a>.
+
+![image](https://user-images.githubusercontent.com/78679506/112435987-938df980-8d99-11eb-826b-22d70bddc674.png)
