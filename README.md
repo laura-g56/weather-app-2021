@@ -11,10 +11,10 @@ Languages Used:
 App features:
 
 - Requests and processes OpenWeatherMap API's data to present: 
-  - Current temperature & description
+  - Current temperature & weather description
   - 5-day forecast including min. and max. daily temperatures
   - Other weather info eg. Humidity, precipitation, & wind speed
 - Retrieves geolocation weather via a button
 - Ability to toggle between celsius and fahrenheit
 
-
+My weather app is hosted on Netlify and can be viewed <a href="https://zen-bhaskara-aec7cb.netlify.app/" rel="nofollow">here</a>.
